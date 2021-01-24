@@ -1,0 +1,107 @@
+body{
+	height:100%;
+	width: 100%;
+	background-color: #47FE13;
+}
+
+#upperScreen{
+	display: flex;
+}
+
+#connect,#logout,#disconnect{
+    border: 0;
+    margin: 20px 0px 0px 30px;
+    text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 3px 5px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size:24px;
+    text-decoration: bold;
+}
+
+#send{
+	border: 0;
+	text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 3px 5px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    font-size:20px;
+    text-decoration: bold;
+}
+
+#logo{
+	padding:0px 20px;
+}
+
+#main-screen{
+	height:580px;
+	width:90vw;
+	display: flex;	
+	position: relative;
+}
+
+#chat-window{
+	height: 100%;
+	width:40%;
+	margin:0px 10px;
+	padding:0px 20px;
+	border:1px solid black;
+	background-color: orange;
+}
+
+#chat{
+	height:100%;
+	width: 100%;
+	margin:0px 0px;
+}
+
+.text{
+	color: aqua;
+	text-decoration: bold;
+}
+
+#messages{
+	height: 70%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: none;
+	background-color: white;
+	border-radius: 5%;
+}
+
+#chat{
+	display: flex;
+	margin-top:2%;
+}
+
+#message-box{
+	width: 100%;
+}
+
+input{
+	box-sizing: border-box;
+	width: 100%;
+	height:30px;
+	border:none;
+	border-radius: 5%;
+}
+
+
+#send-button{
+	width:20%;
+	margin-left:10px;
+}
+
+#send{
+	height:100%;
+	width:100%;
+	border:none;
+	border-radius:10%;
+	cursor: pointer;
+}

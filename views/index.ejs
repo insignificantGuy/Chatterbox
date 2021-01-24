@@ -1,0 +1,76 @@
+<!doctype HTML>
+<head>
+	<title>Chat</title>
+	<meta http-equiv="refresh" content="7" >
+	<link rel="stylesheet" type="text/css" href="../stuff/index.css">
+</head>
+<body>
+	<div id="upperScreen">
+		<div>
+			<h1 id="logo"> Chat</h1>
+		</div>
+		<div>
+		<form method="POST">
+		<button type="submit" id="connect" name="connect" value="connect">
+		Connect to Random
+		</button>
+		<button type="submit" id="disconnect" name="disconnect" value="disconnect">Disconnect
+		</button>
+		<button type="submit" id="logout" name="logout" value="disconnect">
+		Logout
+		</button>
+		</form>
+		</div>
+	</div>
+	<div id="main-screen">
+		<div id="chat-window">
+			<h3>Chatbox</h3>
+			<% if(connectname!=null){ %>
+			<table>
+				<tr>
+					<td><p>You are connected to:</p></td>
+					<td><h3 class="text"><%=connectname[0].connectedName %></h3></td>
+				</tr>
+			</table>
+			<% } else{%>
+			<table>
+				<tr>
+					<td><h3 style="color: red;">You are not connected to anyone currently.</h3></td>
+				</tr>
+			</table>
+			<% } %>
+			<div id="messages">
+				<% if(messages !=null && connectname !=null){ %>
+				<table>
+				<% for(var i=0;i< messages.length;i++){ %>
+				<tr>
+					<% if((connectname[0].user).toString()==(messages[i].from).toString()){ %>
+					 <td valign="top"><h3 class="text"> You:</h3></td>
+					 <td><p><%=messages[i].message%></p></td>
+					<% } else{ %>
+					<td valign="top"><h3 class="text"><%=connectname[0].connectedName %>: </h3></td>
+					<td><p><%=messages[i].message%></p></td>
+					<% } %>
+				</tr>
+				<% } %>
+			</table>
+			<% } %>
+			</div>
+			<form method="POST">
+				<div id="chat">
+				<div id="message-box">
+					<input type="text" name="message" placeholder="Enter the text" />
+				</div>
+				<div id="send-button">
+						<button type="submit" id="send" name="Send" value="Send">
+							Send
+						</button>
+					</form>
+				</div>
+				</div>
+			</form>
+		</div>
+	</div>
+<script src="https://npmcdn.com/js-alert/dist/jsalert.min.js"></script>
+</body>
+</html>

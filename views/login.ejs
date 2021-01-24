@@ -1,0 +1,18 @@
+<!doctype HTML>
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" href="../stuff/login.css">
+</head>
+<body>
+    <h4 style="color: white;">Total number of people online: <%=number %></h4>
+    <div class="card">
+        <form class="box" action="/" method="POST">
+            <h1>Login</h1>
+            <h4 style="color: red;"><%=info%></h4>
+            <p class="text-muted"> Please enter your login and password!</p> 
+            <input type="text" name="username" placeholder="Username"> 
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" name="login" value="Login">
+        </form>
+    </div>
+</body>
