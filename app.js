@@ -105,7 +105,15 @@ app.post('/',url,(req,res)=>{
 });
 
 app.get('/chat/:_id',(req,res)=>{
-	res.render('index',{connectname:null,messages:null});
+	usermodel.find({_id:req.params._id},(err,docs)=>{
+		if(err){
+			console.log(err);
+		}
+		else{
+			username=docs[0].username;
+			res.render('index',{username:username,connectname:null,messages:null});
+		}
+	})
 });
 
 app.post('/chat/:_id',url,(req,res)=>{
@@ -128,6 +136,9 @@ app.post('/chat/:_id',url,(req,res)=>{
 			connectmodel.find({user:id},(err,doc)=>{
 			if(err){
 				console.log(err);
+			}
+			if(!_.isEmpty(doc)){
+				res.redirect('/chatterbox/'+id);
 			}
 			if(_.isEmpty(doc)){
 				var newconnect= new connectmodel();
@@ -160,7 +171,7 @@ app.post('/chat/:_id',url,(req,res)=>{
 			}
 			if(_.isEmpty(docs)){
 				reciever=null;
-				res.render('index',{connectname:null,messages:null});
+				res.render('index',{username:username,connectname:null,messages:null});
 			}
 			else{
 				var length=docs.length;
@@ -185,7 +196,7 @@ app.post('/chat/:_id',url,(req,res)=>{
 			});
 		}
 		else{
-			res.render('index',{connectname:null,messages:null});
+			res.render('index',{username:username,connectname:null,messages:null});
 		}
 		},3000);
 	}
@@ -210,7 +221,17 @@ app.post('/chat/:_id',url,(req,res)=>{
 app.get('/chatterbox/:_id',(req,res)=>{
 	var connectname;
 	var messages;
+	var username;
 		var ide=req.params._id;
+		usermodel.find({_id:ide},(err,docs)=>{
+			if(err){
+				console.log(err);
+			}
+			else{
+				username=docs[0].username;
+			}
+		});
+		
 		connectmodel.find({user:ide},(err,docs)=>{
 			if(err){
 				console.log(err);
@@ -218,7 +239,7 @@ app.get('/chatterbox/:_id',(req,res)=>{
 			if(_.isEmpty(docs)){
 				connectname=null;
 				messages=null;
-				res.render('index',{connectname:connectname,messages:messages});
+				res.render('index',{username:username,connectname:connectname,messages:messages});
 			}
 			else{
 				connectname=docs;
@@ -232,11 +253,11 @@ app.get('/chatterbox/:_id',(req,res)=>{
 				}
 				if(!_.isEmpty(docss)){
 					messages=docss;
-					res.render('index',{connectname:connectname,messages:messages});
+					res.render('index',{username:username,connectname:connectname,messages:messages});
 				}
 				else{
 					messages=null;
-					res.render('index',{connectname:connectname,messages:messages});
+					res.render('index',{username:username,connectname:connectname,messages:messages});
 				}
 			});
 		};
@@ -244,11 +265,25 @@ app.get('/chatterbox/:_id',(req,res)=>{
 });
 
 app.post('/chatterbox/:_id',url,(req,res)=>{
+	var id=req.params._id
+	if(req.body.connect){
+		connectmodel.find({user:id},(err,docs)=>{
+			if(err){
+				console.log(err);
+			}
+			if(!_.isEmpty(docs)){
+				res.redirect('/chatterbox/'+id);
+			}
+			else{
+				res.redirect('/chat/'+id);
+			}
+		});
+	}
+
 	if(req.body.Send){
-		var ide=req.params._id;
 		var userid;
 		var recid;
-		connectmodel.find({user:ide},(err,docs)=>{
+		connectmodel.find({user:id},(err,docs)=>{
 			if(err){
 				console.log(err);
 			}
@@ -264,12 +299,11 @@ app.post('/chatterbox/:_id',url,(req,res)=>{
 					console.log(err);
 				}
 			});
-		res.redirect('/chatterbox/'+ide);
+		res.redirect('/chatterbox/'+id);
 		});
 	}
 
 	if(req.body.disconnect){
-		var id=req.params._id;
 		connectmodel.findOneAndRemove({user:id},(err)=>{});
 		connectmodel.findOneAndRemove({to:id},(err)=>{});
 		messagemodel.deleteMany({from:id},(err)=>{if(err){console.log(err)}});
@@ -278,7 +312,6 @@ app.post('/chatterbox/:_id',url,(req,res)=>{
 	}
 
 	if(req.body.logout){	
-		var id=req.params._id;
 		usermodel.findOneAndRemove({_id:id},(err)=>{});
 		connectmodel.findOneAndRemove({user:id},(err)=>{});
 		connectmodel.findOneAndRemove({to:id},(err)=>{});
