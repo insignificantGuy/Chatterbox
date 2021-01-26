@@ -137,9 +137,6 @@ app.post('/chat/:_id',url,(req,res)=>{
 			if(err){
 				console.log(err);
 			}
-			if(!_.isEmpty(doc)){
-				res.redirect('/chatterbox/'+id);
-			}
 			if(_.isEmpty(doc)){
 				var newconnect= new connectmodel();
 				newconnect.user=id;
@@ -155,15 +152,12 @@ app.post('/chat/:_id',url,(req,res)=>{
 			}
 		});
 	}
-	else{
-		JSAlert.alert("You are already connected to a user");
-	}
 		
 		setTimeout(()=>{
 			connectmodel.find({
 				$and:[
-					{user:{$ne:id}},
-					{connect:{$ne:"connected"}}
+					{user:{$ne:id}}/*,
+					{connect:{$ne:"connected"}}*/
 					]
 				},(err,docs)=>{
 			if(err){
