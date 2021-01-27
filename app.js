@@ -154,24 +154,34 @@ app.post('/chat/:_id',url,(req,res)=>{
 	}
 		
 		setTimeout(()=>{
-			connectmodel.find({
-				$and:[
-					{user:{$ne:id}}/*,
-					{connect:{$ne:"connected"}}*/
-					]
-				},(err,docs)=>{
+			connectmodel.find({to:id},(err,docs)=>{
 			if(err){
 				console.log(err);
 			}
 			if(_.isEmpty(docs)){
-				reciever=null;
-				res.render('index',{username:username,connectname:null,messages:null});
+				connectmodel.find({
+				$and:[
+					{user:{$ne:id}},
+					{connect:{$ne:"connected"}}
+					]
+				},(err,docs)=>{
+					if(err){
+						console.log(err);
+					}
+					if(_.isEmpty(docs)){
+						res.render('index',{username:username,connectname:null,messages:null});
+					}
+					else{
+						var length=docs.length;
+						var limit=Math.random()*(length-0)+0;
+						reciever=docs[Math.floor(limit)].user;
+						recieverName=docs[Math.floor(limit)].username;
+					}
+				});
 			}
 			else{
-				var length=docs.length;
-				var limit=Math.random()*(length-0)+0;
-				reciever=docs[Math.floor(limit)].user;
-				recieverName=docs[Math.floor(limit)].username;
+				console.log(docs);
+				res.render('index',{username:username,connectname:null,messages:null});
 			}
 		});
 		},2000);
@@ -192,7 +202,7 @@ app.post('/chat/:_id',url,(req,res)=>{
 		else{
 			res.render('index',{username:username,connectname:null,messages:null});
 		}
-		},3000);
+		},5000);
 	}
 
 	if(req.body.disconnect){
