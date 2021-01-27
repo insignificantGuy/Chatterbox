@@ -1,4 +1,6 @@
-body {
+/*CSS Settings for Desktop and Tablet View*/
+
+body,html {
     height:100%;
     width: 100%;
     margin: 0;
@@ -59,17 +61,76 @@ body {
     padding: 14px 40px;
     outline: none;
     color: white;
+    width: 150px;
     border-radius: 24px;
     transition: 0.25s;
-    cursor: pointer
+    cursor: pointer;
+}
+
+h4{
+    margin-left:5%;
 }
 
 .box input[type="submit"]:hover {
-    background: #2ecc71
+    background: #2ecc71;
+    width:200px;
 }
 
 .forgot {
-    text-decoration: underline
+    text-decoration: underline;
 }
 
+/*Mobile Responsive Setting for Mobile*/
 
+@media screen and (max-width: 420px) {
+.box {
+    width: 30%;
+    left:27%;
+}
+
+.box input[type="text"],
+.box input[type="password"] {
+    padding: 10px 10px;
+    width: 150px;
+    margin-left:10%;
+}
+
+h1 {
+    margin-left:50%;
+    font-size:22px;
+}
+
+h3{
+    font-size:13px;
+    width:200px;
+}
+
+h4{
+    font-size:16px;
+    margin-left:5%;
+}
+
+p{
+    width: 200px;
+}
+
+.box input[type="text"]:focus,
+.box input[type="password"]:focus {
+    width: 200px;
+    margin-left:-15%;
+}
+
+.box input[type="submit"] {
+    width: 130px;
+    margin-left:25%;
+}
+
+.box input[type="submit"]:hover {
+    background: #2ecc71;
+    width:150px;
+}
+
+.forgot {
+    text-decoration: underline;
+}
+}

@@ -74,6 +74,7 @@ app.get('/',(req,res)=>{
 })
 
 app.post('/',url,(req,res)=>{
+	var number;
 	var username=req.body.username;
 	var password=req.body.password;
 	usermodel.find({username:username},(err,doc)=>{
@@ -98,7 +99,15 @@ app.post('/',url,(req,res)=>{
 				res.redirect('/chat/'+doc[0]._id);
 			}
 			else{
-				res.render('login',{info:"This Username has been taken, please try anything else"});
+				usermodel.find({},(err,docs)=>{
+					if(err){
+						console.log(err);
+					}
+					else{
+						number=docs.length;
+						res.render('login',{number:number,info:"This Username has been taken, please try anything else"});
+					}
+				});
 			}
 		}
 	});
