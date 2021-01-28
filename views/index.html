@@ -10,27 +10,51 @@
 	</div>
 	<div id="upperScreen">
 		<div>
-			<h1 id="logo"> Chat</h1>
+			<h1 id="logo"> Chatterbox</h1>
 		</div>
 		<div>
 		<form method="POST">
-		<button type="submit" id="connect" name="connect" value="connect">
-		Connect to Random
+		<button type="submit" id="connect" name="connect" value="connect">Connect
 		</button>
 		<button type="submit" id="disconnect" name="disconnect" value="disconnect">Disconnect
 		</button>
-		<button type="submit" id="logout" name="logout" value="disconnect">
-		Logout
+		<button type="submit" id="logout" name="logout" value="disconnect">Logout
 		</button>
 		</form>
 		</div>
-		<div style="width: 50%;">
+		<div id="welcome">
+			<table>
+				<tr>
+					<td><h3>Welcome: </h3></td>
+					<td><h3>Rahul</h3></td>
+				</tr>
+			</table>
 		</div>
 	</div>
 	<div id="main-screen">
 		<div id="chat-window">
-			<h3>Chatbox</h3>
+			<table style="margin-left: 10px;">
+				<tr>
+					<td><h3>You are connected to:</h3></td>
+					<td><h3 class="text">Mansi</h3></td>
+				</tr>
+			</table>
+			<table style="margin-left: 10px;">
+				<tr>
+					<td><h3 id="info">You are not connected to anyone currently.</h3></td>
+				</tr>
+			</table>
 			<div id="messages">
+			<table style="margin-left: 20px;">
+				<tr>
+					 <td valign="top"><h3 class="text"> You:</h3></td>
+					 <td><p>Hello</p></td>
+				</tr>
+				<tr>
+					<td valign="top"><h3 class="text">Mansi: </h3></td>
+					<td><p>Hi</p></td>
+				</tr>
+			</table>
 			</div>
 			<form method="POST">
 				<div id="chat">

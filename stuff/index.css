@@ -1,14 +1,31 @@
-body{
+/*CSS For desktop View*/
+
+body,html{
 	height:100vh;
-	width: 100vw;
-	background-color: #47FE13;
+	background-color: #1d1e1e;
+}
+
+#logo{
+	padding:0px 20px;
+	color:white;
 }
 
 #upperScreen{
 	display: flex;
+	width: 100%;
+}
+
+#welcome{
+	margin-left: auto;
+}
+
+h1,h2,h3,h4,h5,h6{
+	color: white;
 }
 
 #connect,#logout,#disconnect{
+	width: 230px;
+    height: 40px;
     border: 0;
     margin: 20px 0px 0px 30px;
     text-align: center;
@@ -22,97 +39,14 @@ body{
     text-decoration: bold;
 }
 
-#send{
-	border: 0;
-	text-align: center;
-    border: 2px solid #2ecc71;
-    padding: 3px 5px;
-    outline: none;
-    border-radius: 24px;
-    transition: 0.25s;
-    cursor: pointer;
-    font-size:20px;
-    text-decoration: bold;
+#connect:hover,#logout:hover,#disconnect:hover{
+	width: 250px;
+	background-color:#9fdcf4;
+	color:black;
 }
 
-#logo{
-	padding:0px 20px;
-}
-
-#main-screen{
-	height:650px;
-	width:90vw;
-	display: flex;	
-	position: relative;
-}
-
-#chat-window{
-	height: 100%;
-	width:40%;
-	margin:0px 10px;
-	padding:0px 20px;
-	border:1px solid black;
-	background-color: orange;
-}
-
-#chat{
-	height:100%;
-	width: 100%;
-	margin:0px 0px;
-}
-
-.text{
-	color: aqua;
-	text-decoration: bold;
-}
-
-#messages{
-	height: 70%;
-	width: 100%;
-	overflow-y: auto;
-	overflow-x: none;
-	background-color: white;
-	border-radius: 5%;
-}
-
-#chat{
-	display: flex;
-	margin-top:2%;
-}
-
-#message-box{
-	width: 100%;
-}
-
-input{
-	box-sizing: border-box;
-	width: 100%;
-	height:30px;
-	border:none;
-	border-radius: 5%;
-}
-
-
-#send-button{
-	width:20%;
-	margin-left:10px;
-}
-
-#send{
-	height:100%;
-	width:100%;
-	border:none;
-	border-radius:10%;
-	cursor: pointer;
-}
-
-#loader{
-	height:100%;
-	width: 100%;
-/*	background-color: #c0bdb7;*/
-	z-index: -1;
-	position: fixed;
-	display: none;
+#info{
+	color:red;
 }
 
 .loaders {
@@ -129,4 +63,190 @@ input{
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
+}
+
+#main-screen{
+	height: 100%;
+	display: flex;	
+	position: relative;
+}
+
+#chat-window{
+	height: 100%;
+	width:40%;
+	margin:0px 10px;
+	padding:0px 30px;
+	background-color: #79848e;
+	border:1px solid black;
+	border-radius: 10%;
+}
+
+#chat{
+	height:100%;
+	width: 100%;
+	margin:0px 0px;
+}
+
+.text{
+	color: #202628;
+	text-decoration: bold;
+}
+
+#messages{
+	height: 70%;
+	width: 100%;
+	overflow-y: auto;
+	overflow-x: none;
+	background-color:#ffffff;
+	border-radius: 5%;
+}
+
+#chat{
+	display: flex;
+	margin-top:2%;
+}
+
+#message-box{
+	width: 100%;
+}
+
+input[type="text"]{
+    border: 0;
+    display: block;
+    margin-top: 1%;
+    padding-left: 10px;
+    border: 2px solid #3498db;
+    width: 100%;
+    height: 40px;
+    outline: none;
+    border-radius: 24px;
+    transition: 0.25s
+}
+
+#send-button{
+	width:30%;
+	margin-left:30px;
+}
+
+#send{
+	height:100%;
+	width:100%;
+	border:none;
+	cursor: pointer;
+	transition: 0.25s;
+	text-align: center;
+    border: 2px solid #2ecc71;
+    padding: 3px 5px;
+    outline: none;
+    border-radius: 24px;
+    cursor: pointer;
+    font-size:20px;
+    text-decoration: bold;
+}
+
+#send:hover{
+	width: 110%;
+	margin-left:-3px;
+	text-decoration: bold;
+	color: black;
+	background-color: #2de777;
+}
+
+#loader{
+	height:100%;
+	width: 100%;
+/*	background-color: #c0bdb7;*/
+	z-index: -1;
+	position: fixed;
+	display: none;
+}
+
+/*CSS for Tablet View*/
+
+@media screen and (max-width: 800px){
+	#connect,#logout,#disconnect{
+		width: 100px;
+    	height: 50px;
+    	font-size:16px;
+    	margin:10px 10px 0px 0px;
+	}
+
+	#connect:hover,#logout:hover,#disconnect:hover{
+		width: 130px;
+		background-color:#9fdcf4;
+		color:black;
+	}
+
+	#main-screen{
+		height: 50%;
+	}
+
+	#chat-window{
+		width:40%;
+		margin:10% auto;
+	}
+
+	#messages{
+		height: 50%;
+	}
+
+	input[type="text"]{
+    	margin-top: 5%;
+	}
+	
+	#send{
+		height:40px;
+		width: 100px;
+		margin-top: 5%;
+	}
+
+	#send:hover{
+		text-decoration: bold;
+		color: black;
+		background-color: #2de777;
+	}
+}
+
+@media screen and (max-width: 430px){
+	#connect,#logout,#disconnect{
+		width: 50px;
+    	height: 50px;
+    	font-size:8px;
+    	margin:10px 10px 0px 0px;
+	}
+
+	#connect:hover,#logout:hover,#disconnect:hover{
+		width: 130px;
+		background-color:#9fdcf4;
+		color:black;
+	}
+
+	#main-screen{
+		height: 50%;
+	}
+
+	#chat-window{
+		width:40%;
+		margin:10% auto;
+	}
+
+	#messages{
+		height: 50%;
+	}
+
+	input[type="text"]{
+    	margin-top: 5%;
+	}
+	
+	#send{
+		height:40px;
+		width: 100px;
+		margin-top: 5%;
+	}
+
+	#send:hover{
+		text-decoration: bold;
+		color: black;
+		background-color: #2de777;
+	}
 }
