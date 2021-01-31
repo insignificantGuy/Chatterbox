@@ -1,7 +1,6 @@
 <!doctype HTML>
 <head>
 	<title>Chat</title>
-	<!-- <meta http-equiv="refresh" content="8" > -->
 	<link rel="stylesheet" type="text/css" href="../stuff/index.css">
 </head>
 <body>
@@ -22,8 +21,8 @@
 		</button>
 		</form>
 		</div>
-		<div style="width: 50%;">
-			<table style="margin-left: 90%;">
+		<div id="welcome">
+			<table>
 				<tr>
 					<td><h3>Welcome: </h3></td>
 					<td><h3 style="color: aqua;"><%=username %></h3></td>
@@ -35,22 +34,22 @@
 		<div id="chat-window">
 			<h3>Chatbox</h3>
 			<% if(connectname!=null){ %>
-			<table>
+			<table style="margin-left: 10px;">
 				<tr>
-					<td><p>You are connected to:</p></td>
+					<td><h3>You are connected to:</h3></td>
 					<td><h3 class="text"><%=connectname[0].connectedName %></h3></td>
 				</tr>
 			</table>
 			<% } else{%>
 			<table>
 				<tr>
-					<td><h3 style="color: red;">You are not connected to anyone currently.</h3></td>
+					<td><h3 id="info">You are not connected to anyone currently.</h3></td>
 				</tr>
 			</table>
 			<% } %>
 			<div id="messages">
 				<% if(messages !=null && connectname !=null){ %>
-				<table>
+				<table style="margin-left: 20px;">
 				<% for(var i=0;i< messages.length;i++){ %>
 				<tr>
 					<% if((connectname[0].user).toString()==(messages[i].from).toString()){ %>
